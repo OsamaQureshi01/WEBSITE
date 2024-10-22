@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Hire Me</title>
+</head>
+<body>
+    <div id="loader" class="loader"></div>
+    <div id="content" style="display:none;">
+    <header>
+        <a href="#" class="logo">Osama Qureshi</a>
+
+        <nav>
+            <a href="index.html" > Home</a>
+            <a href="service.html" >Services</a>
+            <a href="skill.html" >Skills</a>
+            <a href="education.html" >Education</a>
+            <a href="exp.html" >Experience</a>
+            <a href="contact.html" >Contact</a>
+            <a href="#" class="active">Hire Now</a>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="IMG-20231026-WA0009.jpg" alt="itsme">
+        </div>
+        <div class="home-content">
+            <h1>Hire<span>Now</span></h1>
+
+        <div class="form input">
+            <form id="contactForm" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="name" id="firstname">First Name</label>
+                            <input type="text" name="name" id="firstname" placeholder="Enter First Name">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label for="lname" id="lname">Last Name</label>
+                            <input type="text" name="lname" id="lname" placeholder="Enter Last Name">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="email" id="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Enter Email">
+                        </td>
+                        <td>
+                            <label for="num" id="num">&nbsp;&nbsp;&nbsp;&nbsp;Phone Number</label>
+                            <input type="tel" name="num" id="num" placeholder="Enter Number" maxlength="11">
+                        </td>
+                    </tr>
+                    
+                </table>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById("contactForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                // Collect form data
+                const FirstName = document.getElementById("firstname").value;
+                const LastName = document.getElementById("lname").value;
+                const Email = document.getElementById("email").value;
+                const PhoneNumber = document.getElementById("num").value;
+    
+                // Prepare data to send
+                const data = {
+                    firstname: FirstName,
+                    lname: LastName,
+                    email: Email,
+                    num: PhoneNumber,
+                };
+    
+                // Send data to Google Sheets
+                fetch('https://script.google.com/macros/s/AKfycbzfugtMdEfUzjeQKYvGvIQEeNgLQIFgI7oAAu3kFwmmV2yMgFi8tMr5yQQc0zsmwh0s/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Form submitted successfully!');
+                    // Reset the form
+                    document.getElementById("contactForm").reset();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting the form.');
+                });
+            });
+        </script>
+        <br>
+
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/muhammadosamazulfiqar/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/osamaqureshi01" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/usmi.qureshi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
